@@ -9,13 +9,13 @@ WHITE   := \033[0;37m
 RESET   := \033[0m
 
 SOURCES	=	main.cpp\
-			Span.cpp
+			RPN.cpp
 
 OBJS	=	$(SOURCES:.cpp=.o)
 
 DEPS	=	$(OBJS:.o=.d)
 
-NAME	=	mutantstack_test
+NAME	=	RPN
 
 CC		=	c++
 

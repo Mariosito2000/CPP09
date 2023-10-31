@@ -9,13 +9,13 @@ WHITE   := \033[0;37m
 RESET   := \033[0m
 
 SOURCES	=	main.cpp\
-			Span.cpp
+			PmergeMe.cpp
 
 OBJS	=	$(SOURCES:.cpp=.o)
 
 DEPS	=	$(OBJS:.o=.d)
 
-NAME	=	mutantstack_test
+NAME	=	PmergeMe
 
 CC		=	c++
 

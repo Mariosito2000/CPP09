@@ -9,6 +9,7 @@
 #include <sstream>
 #include <fstream>
 
-void	parse_csv(std::map <std::string, std::string> map);
+void	parse_csv(std::map <std::string, std::string>& map);
+void	execute_exchange(char *filename, std::map <std::string, std::string>& map);
 
 #endif
