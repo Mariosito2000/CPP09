@@ -37,15 +37,15 @@ static void	check_value(std::string& value)
 {
 	bool point = false;
 	if (value.empty() || value[value.length() - 1] == '.' || value[0] == '.')
-		throw("Error: not a valid number => \"" + value + "\"");
+		throw("Error: not a valid value => \"" + value + "\"");
 	for (size_t i = 0; i < value.length(); i++)
 	{
 		if (!std::isdigit(value[i]) && value[i] != '.')
-			throw("Error: not a valid number => \"" + value + "\"");
+			throw("Error: not a valid value => \"" + value + "\"");
 		if (value[i] == '.')
 		{
 			if (point == true)
-				throw("Error: not valid a number => \"" + value + "\"");
+				throw("Error: not valid a value => \"" + value + "\"");
 			point = true;
 		}
 	}
@@ -76,15 +76,18 @@ void	parse_csv(std::map <std::string, std::string>& map)
 	}
 }
 
-static void	manage_exchange(std::string& key, std::string& value, std::map <std::string, std::string>& map)
+static void	manage_exchange(std::string& key, std::string& value, std::map<std::string, std::string>& map)
 {
 	float result;
 	float multi;
 
 	result = std::atof(value.c_str());
 	if (result > 1000)
-		throw ("Error: not valid a number => \"" + value + "\"");
-	std::string mulstr = static_cast<std::string>(map.lower_bound(key)->second);
+		throw ("Error: not valid a value => \"" + value + "\"");
+	std::map<std::string, std::string>::iterator date = map.lower_bound(key);
+	if (date->first != key && date != map.begin())
+		date--;
+	std::string mulstr = static_cast<std::string>(date->second);
 	multi = atof(mulstr.c_str());
 	result *= multi;
 	std::cout << key << " => " << value << " = " << result << "\n";
@@ -94,7 +97,7 @@ void	execute_exchange(char *filename, std::map <std::string, std::string>& map)
 {
 	std::fstream		file;
 	std::string			string, key, value;
-	(void)map;
+
 	file.open(filename);
 	if (!file.is_open())
 		throw ("Error: could not open file.");

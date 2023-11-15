@@ -1,6 +1,6 @@
 #include "RPN.hpp"
 
-int	operate(int	&temp, int &top, char &op)
+int	operate(int	temp, int top, char op)
 {
 	if (op == '+')
 		top += temp;
@@ -9,7 +9,12 @@ int	operate(int	&temp, int &top, char &op)
 	else if (op == '*')
 		top *= temp;
 	else if (op == '/')
+	{
+		if (temp == 0)
+			throw ("Error: cannot divide by zero");
 		top /= temp;
+	}
+
 	return (top);
 }
 
